@@ -56,8 +56,34 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
           const theme = stored === "dark" || stored === "light"
             ? stored
             : "dark";
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
+          const applyTheme = (next) => {
+            document.documentElement.dataset.theme = next;
+            document.documentElement.style.colorScheme = next;
+            const toggle = document.querySelector("[data-theme-toggle]");
+            if (!(toggle instanceof HTMLButtonElement)) return;
+            const isDark = next === "dark";
+            toggle.setAttribute("aria-pressed", String(isDark));
+            toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+            toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+          };
+          const persistTheme = (next) => {
+            try {
+              localStorage.setItem(key, next);
+            } catch {}
+            document.cookie = cookieKey + "=" + next + "; Max-Age=31536000; Path=/; SameSite=Lax";
+          };
+          applyTheme(theme);
+          document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            const toggle = target.closest("[data-theme-toggle]");
+            if (!(toggle instanceof HTMLButtonElement)) return;
+            event.preventDefault();
+            const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+            applyTheme(next);
+            persistTheme(next);
+          }, true);
+          document.addEventListener("DOMContentLoaded", () => applyTheme(document.documentElement.dataset.theme || theme), { once: true });
         })();
       `}
     </script>
@@ -104,34 +130,6 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
       <span>Built from an Obsidian vault with Hooni.</span>
     </footer>
     <script>
-      const themeKey = "jonghoon-blog:theme";
-      const themeCookieKey = "jonghoon-blog-theme";
-      const themeToggle = document.querySelector("[data-theme-toggle]");
-
-      function persistTheme(theme: string) {
-        try {
-          localStorage.setItem(themeKey, theme);
-        } catch {}
-        document.cookie = `${themeCookieKey}=${theme}; Max-Age=31536000; Path=/; SameSite=Lax`;
-      }
-
-      function syncThemeButton() {
-        if (!(themeToggle instanceof HTMLButtonElement)) return;
-        const isDark = document.documentElement.dataset.theme === "dark";
-        themeToggle.setAttribute("aria-pressed", String(isDark));
-        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-        themeToggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
-      }
-
-      themeToggle?.addEventListener("click", () => {
-        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
-        document.documentElement.style.colorScheme = next;
-        persistTheme(next);
-        syncThemeButton();
-      });
-      syncThemeButton();
-
       document.addEventListener("click", (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
