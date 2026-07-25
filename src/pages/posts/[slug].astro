@@ -1,0 +1,132 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LikeButton from "../../components/LikeButton.astro";
+import graph from "../../../generated/graph.json";
+import { relatedDocuments } from "../../scripts/graph-filter.js";
+import { seriesNavigation } from "../../scripts/content-order.js";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("posts");
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const series = seriesNavigation(entry, await getCollection("posts"));
+const published = entry.data.published.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC"
+});
+interface RelatedDocument {
+  id: string;
+  slug: string;
+  title: string;
+}
+
+const related = relatedDocuments(graph, entry.data.id) as {
+  parent: RelatedDocument[];
+  links: RelatedDocument[];
+  backlinks: RelatedDocument[];
+};
+const relationGroups = [
+  { label: "Parent", documents: related.parent },
+  { label: "Links", documents: related.links },
+  { label: "Backlinks", documents: related.backlinks }
+].filter((group) => group.documents.length > 0);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary}>
+  <div class="article-shell">
+    <aside class="article-rail" aria-label="Article details">
+      <a href="/garden/" class="back-link">← Open in the garden</a>
+      <p class="eyebrow">Published</p>
+      <p>{published}</p>
+      <p class="eyebrow">Reading map</p>
+      <ol>
+        {headings.filter((heading) => heading.depth === 2).map((heading) => (
+          <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+        ))}
+      </ol>
+      {relationGroups.length > 0 && (
+        <div class="article-relations" aria-label="Related documents">
+          {relationGroups.map((group) => (
+            <section>
+              <h2>{group.label}</h2>
+              <ul>
+                {group.documents.map((document) => (
+                  <li>
+                    <a href={`/posts/${document.slug}/`}>{document.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      )}
+    </aside>
+    <article class="prose" data-article data-document-id={entry.data.id}>
+      {entry.data.cover && (
+        <figure class="article-cover">
+          <img
+            src={entry.data.cover}
+            alt=""
+            width="1536"
+            height="1024"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </figure>
+      )}
+      <header class="article-header">
+        <p class="eyebrow">
+          {entry.data.series ?? "Jong Hoon's Blog"}
+          {entry.data.series_order ? ` · Part ${entry.data.series_order}` : ""}
+        </p>
+        <h1>{entry.data.title}</h1>
+        <p class="dek">{entry.data.summary}</p>
+        <ul class="tag-list">
+          {entry.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+        <LikeButton slug={entry.data.slug} />
+      </header>
+      <Content />
+      {series && (
+        <nav class="series-navigation" aria-label="Series reading order">
+          <a
+            class="series-overview"
+            href={`/posts/${series.index.data.slug}/`}
+          >
+            <span>Series overview</span>
+            <strong>{series.index.data.title}</strong>
+          </a>
+          <div class="series-neighbors">
+            {series.previous && (
+              <a
+                class="series-previous"
+                href={`/posts/${series.previous.data.slug}/`}
+              >
+                <span>← Previous</span>
+                <strong>{series.previous.data.title}</strong>
+              </a>
+            )}
+            {series.next && (
+              <a
+                class="series-next"
+                href={`/posts/${series.next.data.slug}/`}
+              >
+                <span>Next →</span>
+                <strong>{series.next.data.title}</strong>
+              </a>
+            )}
+          </div>
+        </nav>
+      )}
+    </article>
+  </div>
+</BaseLayout>

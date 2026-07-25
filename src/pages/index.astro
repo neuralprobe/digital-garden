@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import {
+  isPublication,
+  sortByPublished
+} from "../scripts/content-order.js";
+
+const entries = sortByPublished(
+  (await getCollection("posts")).filter(isPublication)
+);
+const lead = entries[0];
+const remaining = entries.slice(1);
+---
+
+<BaseLayout>
+  <section class="post-section home-posts" id="recent">
+    {lead && (
+      <PostCard
+        title={lead.data.title}
+        summary={lead.data.summary}
+        slug={lead.data.slug}
+        published={lead.data.published}
+        tags={lead.data.tags}
+        featured={true}
+        cover={lead.data.cover}
+      />
+    )}
+
+    <div class="post-grid">
+      {remaining.map((entry) => (
+        <PostCard
+          title={entry.data.title}
+          summary={entry.data.summary}
+          slug={entry.data.slug}
+          published={entry.data.published}
+          tags={entry.data.tags}
+          cover={entry.data.cover}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

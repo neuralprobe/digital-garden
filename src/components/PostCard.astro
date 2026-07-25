@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  slug: string;
+  published: Date;
+  tags?: string[];
+  featured?: boolean;
+  cover?: string | null;
+}
+
+const {
+  title,
+  summary,
+  slug,
+  published,
+  tags = [],
+  featured = false,
+  cover = null
+} = Astro.props;
+const date = published.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC"
+});
+---
+
+<article class:list={["post-card", { featured }]}>
+  <a href={`/posts/${slug}/`} aria-label={`Read ${title}`}>
+    <div class:list={["post-card-art", { "has-cover": cover }]} aria-hidden="true">
+      {cover ? (
+        <img
+          src={cover}
+          alt=""
+          width="1536"
+          height="1024"
+          loading={featured ? "eager" : "lazy"}
+          decoding="async"
+          fetchpriority={featured ? "high" : "auto"}
+        />
+      ) : (
+        <>
+          <span>{featured ? "Featured essay" : "Field note"}</span>
+          <i></i>
+        </>
+      )}
+    </div>
+    <div class="post-card-copy">
+      <p class="eyebrow">{date}</p>
+      <h2>{title}</h2>
+      <p>{summary}</p>
+      <ul aria-label="Tags">
+        {tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
+      </ul>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,372 @@
+{
+  "edges": [
+    {
+      "relation": "depends_on",
+      "source": "ca-ch1-computer-classes-parallelism",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "parent",
+      "source": "ca-ch1-computer-classes-parallelism",
+      "target": "ca-ch1-series"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-computer-classes-parallelism",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "depends_on",
+      "source": "ca-ch1-isa-microarchitecture-hardware",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "parent",
+      "source": "ca-ch1-isa-microarchitecture-hardware",
+      "target": "ca-ch1-series"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-isa-microarchitecture-hardware",
+      "target": "ca-ch1-computer-classes-parallelism"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-isa-microarchitecture-hardware",
+      "target": "ca-ch1-quantitative-design"
+    },
+    {
+      "relation": "depends_on",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "depends_on",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "parent",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-series"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-computer-classes-parallelism"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-quantitative-design",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "includes",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-computer-classes-parallelism"
+    },
+    {
+      "relation": "includes",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "includes",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-quantitative-design"
+    },
+    {
+      "relation": "includes",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-computer-classes-parallelism"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-quantitative-design"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-series",
+      "target": "ca-ch1-why-architecture-changed"
+    },
+    {
+      "relation": "parent",
+      "source": "ca-ch1-why-architecture-changed",
+      "target": "ca-ch1-series"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-why-architecture-changed",
+      "target": "ca-ch1-computer-classes-parallelism"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-why-architecture-changed",
+      "target": "ca-ch1-isa-microarchitecture-hardware"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ca-ch1-why-architecture-changed",
+      "target": "ca-ch1-quantitative-design"
+    },
+    {
+      "relation": "depends_on",
+      "source": "ks-building-digital-garden",
+      "target": "ks-zettelkasten-writing-engine"
+    },
+    {
+      "relation": "parent",
+      "source": "ks-building-digital-garden",
+      "target": "ks-knowledge-systems"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ks-building-digital-garden",
+      "target": "ks-zettelkasten-writing-engine"
+    },
+    {
+      "relation": "includes",
+      "source": "ks-knowledge-systems",
+      "target": "ks-building-digital-garden"
+    },
+    {
+      "relation": "includes",
+      "source": "ks-knowledge-systems",
+      "target": "ks-zettelkasten-writing-engine"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ks-knowledge-systems",
+      "target": "ks-building-digital-garden"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ks-knowledge-systems",
+      "target": "ks-zettelkasten-writing-engine"
+    },
+    {
+      "relation": "parent",
+      "source": "ks-zettelkasten-writing-engine",
+      "target": "ks-knowledge-systems"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ks-zettelkasten-writing-engine",
+      "target": "ks-building-digital-garden"
+    },
+    {
+      "relation": "wikilink",
+      "source": "ks-zettelkasten-writing-engine",
+      "target": "ks-knowledge-systems"
+    }
+  ],
+  "nodes": [
+    {
+      "cover": "/assets/a/img/covers/zettelkasten-for-people-who-write.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ks-zettelkasten-writing-engine",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T09:00:00-07:00",
+      "series": "Knowledge Systems",
+      "series_order": "1",
+      "slug": "zettelkasten-as-a-writing-engine",
+      "status": "active",
+      "summary": "How atomic notes, deliberate links, and indexes turn reading into reusable writing.",
+      "tags": [
+        "zettelkasten",
+        "writing",
+        "note-taking",
+        "second-brain"
+      ],
+      "title": "Zettelkasten as a Writing Engine",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": "/assets/a/img/covers/why-computer-architecture-changed.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ca-ch1-why-architecture-changed",
+      "lang": "en",
+      "legacy_url": "/what-is-computer-architecture-notes-from-chapter-1-of-hennessy-patterson/",
+      "published": "2026-07-24T12:00:00-07:00",
+      "series": "Computer Architecture Chapter 1",
+      "series_order": "1",
+      "slug": "what-is-computer-architecture-notes-from-chapter-1-of-hennessy-patterson",
+      "status": "active",
+      "summary": "How scaling limits moved processor design toward parallelism and specialized hardware.",
+      "tags": [
+        "computer-architecture",
+        "specialization",
+        "parallelism",
+        "scaling"
+      ],
+      "title": "Why Computer Architecture Changed",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": "/assets/a/img/covers/quantitative-computer-design.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ca-ch1-quantitative-design",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T15:00:00-07:00",
+      "series": "Computer Architecture Chapter 1",
+      "series_order": "4",
+      "slug": "quantitative-computer-design",
+      "status": "active",
+      "summary": "How performance, reliability, locality, and Amdahl's Law guide architecture decisions.",
+      "tags": [
+        "computer-architecture",
+        "performance",
+        "amdahls-law",
+        "benchmarking"
+      ],
+      "title": "Quantitative Computer Design",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": null,
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ks-knowledge-systems",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T08:00:00-07:00",
+      "series": "Knowledge Systems",
+      "series_order": null,
+      "slug": "knowledge-systems",
+      "status": "active",
+      "summary": "How connected notes become a durable writing practice and a selective public garden.",
+      "tags": [
+        "knowledge-systems",
+        "digital-garden",
+        "zettelkasten"
+      ],
+      "title": "Knowledge Systems",
+      "type": "index",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": "/assets/a/img/covers/isa-microarchitecture-and-hardware.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ca-ch1-isa-microarchitecture-hardware",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T14:00:00-07:00",
+      "series": "Computer Architecture Chapter 1",
+      "series_order": "3",
+      "slug": "isa-microarchitecture-and-hardware",
+      "status": "active",
+      "summary": "A practical separation of the software-visible ISA from organization and physical design.",
+      "tags": [
+        "computer-architecture",
+        "isa",
+        "microarchitecture",
+        "risc-v"
+      ],
+      "title": "ISA, Microarchitecture, and Hardware",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": null,
+      "created": "2026-07-24",
+      "featured": true,
+      "id": "ca-ch1-series",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T11:00:00-07:00",
+      "series": "Computer Architecture Chapter 1",
+      "series_order": null,
+      "slug": "computer-architecture-chapter-1",
+      "status": "active",
+      "summary": "A four-part guide to the ideas and quantitative methods that shape computer architecture.",
+      "tags": [
+        "computer-architecture",
+        "hennessy-patterson",
+        "fundamentals",
+        "index"
+      ],
+      "title": "Computer Architecture Chapter 1",
+      "type": "index",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": "/assets/a/img/covers/classes-of-computers-and-parallelism.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ca-ch1-computer-classes-parallelism",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T13:00:00-07:00",
+      "series": "Computer Architecture Chapter 1",
+      "series_order": "2",
+      "slug": "classes-of-computers-and-parallelism",
+      "status": "active",
+      "summary": "How system goals determine the useful forms of parallelism in modern computers.",
+      "tags": [
+        "computer-architecture",
+        "parallelism",
+        "gpu",
+        "warehouse-scale-computing"
+      ],
+      "title": "Classes of Computers and Their Parallelism",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    },
+    {
+      "cover": "/assets/a/img/covers/building-my-digital-garden.webp",
+      "created": "2026-07-24",
+      "featured": false,
+      "id": "ks-building-digital-garden",
+      "lang": "en",
+      "legacy_url": null,
+      "published": "2026-07-24T10:00:00-07:00",
+      "series": "Knowledge Systems",
+      "series_order": "2",
+      "slug": "building-my-digital-garden",
+      "status": "active",
+      "summary": "A private Obsidian vault becomes a selective, connected, and maintainable public garden.",
+      "tags": [
+        "digital-garden",
+        "obsidian",
+        "knowledge-graph",
+        "hooni"
+      ],
+      "title": "Building My Digital Garden",
+      "type": "post",
+      "updated": "2026-07-24",
+      "visibility": "public"
+    }
+  ]
+}

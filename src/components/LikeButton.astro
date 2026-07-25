@@ -1,0 +1,26 @@
+---
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div class="article-like">
+  <button
+    type="button"
+    class="like-button"
+    data-like-button
+    data-slug={slug}
+    aria-pressed="false"
+  >
+    <span class="like-heart" aria-hidden="true">♡</span>
+    <span data-like-label>Like</span>
+    <span class="like-count" data-like-count aria-label="Like count">—</span>
+  </button>
+  <span class="like-status" data-like-status role="status" aria-live="polite"></span>
+</div>
+
+<script>
+  import "../scripts/likes.js";
+</script>

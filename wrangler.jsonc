@@ -1,0 +1,35 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "jonghoon-blog",
+	"compatibility_date": "2026-07-24",
+	"main": "./worker/index.js",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"not_found_handling": "404-page",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"env": {
+		"local": {
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "jonghoon-blog-likes-local",
+					"database_id": "00000000-0000-0000-0000-000000000001",
+					"preview_database_id": "jonghoon-blog-likes-local",
+					"migrations_dir": "migrations"
+				}
+			]
+		}
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "jonghoon-blog-likes",
+			"database_id": "d01115e3-802e-45d1-b9ae-7949b4655c16",
+			"migrations_dir": "migrations"
+		}
+	]
+}

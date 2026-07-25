@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { topicReadingPaths } from "../scripts/content-order.js";
+
+const descriptions: Record<string, string> = {
+  "Computer Architecture":
+    "Processors, parallel systems, hardware organization, and quantitative design.",
+  "Knowledge Systems":
+    "How connected notes become durable writing and a selective public garden."
+};
+
+const entries = await getCollection("posts");
+const topics = topicReadingPaths(entries) as Array<{
+  topic: string;
+  documents: typeof entries;
+}>;
+const documentCount = topics.reduce(
+  (count, topic) => count + topic.documents.length,
+  0
+);
+---
+
+<BaseLayout
+  title="Topics"
+  description="Browse Jong Hoon's public notes by subject and reading path."
+>
+  <section class="topics-page">
+    <header class="section-heading compact-heading">
+      <h1>Topics</h1>
+      <span>{topics.length} subjects · {documentCount} connected notes</span>
+    </header>
+
+    <div class="topic-accordion">
+      {topics.map(({ topic, documents }, index) => (
+        <details name="topic-list">
+          <summary>
+            <span class="topic-number">{String(index + 1).padStart(2, "0")}</span>
+            <span class="topic-name">
+              <strong>{topic}</strong>
+              <small>{descriptions[topic] ?? "A connected collection of public notes."}</small>
+            </span>
+            <span class="topic-count">{documents.length} notes</span>
+            <i aria-hidden="true">+</i>
+          </summary>
+          <div class="topic-documents">
+            {documents.map((entry) => (
+              <a href={`/posts/${entry.data.slug}/`}>
+                <span class="document-kind">
+                  {entry.data.type === "index" ? "Overview" : "Essay"}
+                </span>
+                <span>
+                  <strong>{entry.data.title}</strong>
+                  <small>{entry.data.summary}</small>
+                </span>
+                <i aria-hidden="true">↗</i>
+              </a>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+  <script>
+    import "../scripts/topics.js";
+  </script>
+</BaseLayout>

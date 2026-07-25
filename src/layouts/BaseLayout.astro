@@ -1,0 +1,145 @@
+---
+import "katex/dist/katex.min.css";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  pageClass?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "Jong Hoon's Blog",
+  description = "Notes on computer architecture, AI systems, and connected thinking.",
+  pageClass = "",
+  noindex = false
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" type="application/rss+xml" title="Jong Hoon's Blog" href="/rss.xml" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23171917%22/><path d=%22M18 16h8v13h12V16h8v32h-8V36H26v12h-8z%22 fill=%22%23f5f1e8%22/></svg>" />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      {`
+        (() => {
+          const key = "jonghoon-blog:theme";
+          const media = window.matchMedia("(prefers-color-scheme: dark)");
+          let theme = media.matches ? "dark" : "light";
+          try {
+            const saved = localStorage.getItem(key);
+            if (saved === "dark" || saved === "light") theme = saved;
+          } catch {}
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        })();
+      `}
+    </script>
+  </head>
+  <body class={pageClass}>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Jong Hoon's Blog home">
+        <span class="brand-mark">JH</span>
+        <span>
+          <strong>Jong Hoon</strong>
+          <small>Notes & connected thinking</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <nav aria-label="Primary navigation">
+          <a href="/">Posts</a>
+          <a href="/garden/">Graph</a>
+          <a href="/topics/">Topics</a>
+          <a href="/about/">About</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+          title="Switch to dark mode"
+        >
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z" />
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} Jong Hoon</span>
+      <span>Built from an Obsidian vault with Hooni.</span>
+    </footer>
+    <script>
+      const themeKey = "jonghoon-blog:theme";
+      const themeToggle = document.querySelector("[data-theme-toggle]");
+      const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function storedTheme() {
+        try {
+          return localStorage.getItem(themeKey);
+        } catch {
+          return null;
+        }
+      }
+
+      function applyTheme(theme: string) {
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        if (!(themeToggle instanceof HTMLButtonElement)) return;
+        const isDark = theme === "dark";
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        themeToggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+      }
+
+      themeToggle?.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        try {
+          localStorage.setItem(themeKey, next);
+        } catch {}
+        applyTheme(next);
+      });
+
+      themeMedia.addEventListener("change", (event) => {
+        if (!storedTheme()) applyTheme(event.matches ? "dark" : "light");
+      });
+      applyTheme(document.documentElement.dataset.theme || (themeMedia.matches ? "dark" : "light"));
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const link = target.closest("a[href]");
+        if (!(link instanceof HTMLAnchorElement)) return;
+        const url = new URL(link.href, window.location.href);
+        if (!["http:", "https:"].includes(url.protocol)) return;
+        if (url.origin === window.location.origin) return;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+    </script>
+  </body>
+</html>

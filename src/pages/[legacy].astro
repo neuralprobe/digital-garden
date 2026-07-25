@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("posts");
+  const postRedirects = entries.flatMap((entry) => {
+    const legacyUrl = entry.data.legacy_url;
+    if (!legacyUrl) return [];
+    const legacy = legacyUrl.split("/").filter(Boolean).at(-1);
+    if (!legacy || legacy === entry.data.slug && legacyUrl.startsWith("/posts/")) {
+      return [];
+    }
+    return [{
+      params: { legacy },
+      props: { target: `/posts/${entry.data.slug}/`, title: entry.data.title }
+    }];
+  });
+  return [
+    {
+      params: { legacy: "about-me" },
+      props: { target: "/about/", title: "About" }
+    },
+    ...postRedirects
+  ];
+}
+
+const { target, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <title>{title} · Jong Hoon</title>
+  </head>
+  <body>
+    <p>This article moved to <a href={target}>{target}</a>.</p>
+  </body>
+</html>

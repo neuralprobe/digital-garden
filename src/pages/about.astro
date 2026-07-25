@@ -1,0 +1,240 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const scholarSearch = (title: string) =>
+  `https://scholar.google.com/scholar?q=${encodeURIComponent(title)}`;
+
+const publications = [
+  {
+    title: "Griffin: Rethinking Sparse Optimization for Deep Learning Architectures",
+    venue: "IEEE HPCA, 2022",
+    href: "https://ieeexplore.ieee.org/abstract/document/9773226"
+  },
+  {
+    title: "Rethinking Floating Point Overheads for Mixed Precision DNN Accelerators",
+    venue: "Proceedings of Machine Learning and Systems, 2021",
+    href: "https://proceedings.mlsys.org/paper_files/paper/2021/hash/e96c462898b47600c6f0b1c40979e8ca-Abstract.html"
+  },
+  {
+    title: "Temporal Data Classification and Forecasting Using a Memristor-Based Reservoir Computing System",
+    venue: "Nature Electronics, 2019",
+    href: "https://www.nature.com/articles/s41928-019-0313-3"
+  },
+  {
+    title: "Resistive Switching Devices and Their Applications for Computing Beyond von Neumann Architecture",
+    venue: "Ph.D. thesis, University of Michigan, 2019"
+  },
+  {
+    title: "K-means Data Clustering with Memristor Networks",
+    venue: "Nano Letters, 2018"
+  },
+  {
+    title: "Hardware Acceleration of Simulated Annealing of Spin Glass by RRAM Crossbar Array",
+    venue: "IEEE IEDM, 2018"
+  },
+  {
+    title: "Self-Limited and Forming-Free CBRAM Device with Double Al₂O₃ ALD Layers",
+    venue: "IEEE Electron Device Letters, 2018"
+  },
+  {
+    title: "Experimental Demonstration of Feature Extraction and Dimensionality Reduction Using Memristor Networks",
+    venue: "Nano Letters, 2017"
+  },
+  {
+    title: "Field-Programmable Crossbar Array (FPCA) for Reconfigurable Computing",
+    venue: "IEEE Transactions on Multi-Scale Computing Systems, 2017"
+  },
+  {
+    title: "Temperature-Dependent Hall Measurement of AlGaN/GaN Heterostructures on Si Substrates",
+    venue: "Journal of the Korean Physical Society, 2015",
+    href: "https://link.springer.com/article/10.3938/jkps.66.61"
+  },
+  {
+    title: "Investigating Gate Metal Induced Reduction of Surface Donor Density in GaN/AlGaN/GaN Heterostructure",
+    venue: "Current Applied Physics, 2015"
+  },
+  {
+    title: "Investigation of Buffer Traps in AlGaN/GaN Heterostructure Field-Effect Transistors",
+    venue: "Journal of Semiconductor Technology and Science, 2014"
+  },
+  {
+    title: "High-Resolution X-Ray Photoemission Study of Photo-Grown Ga₂O₃ in GaN/AlGaN/GaN Heterostructures",
+    venue: "Journal of the Korean Physical Society, 2013",
+    href: "https://link.springer.com/article/10.3938/jkps.63.2314"
+  },
+  {
+    title: "Metal Induced Inhomogeneous Schottky Barrier Height in AlGaN/GaN Schottky Diode",
+    venue: "Applied Physics Letters, 2013"
+  },
+  {
+    title: "Gate Metal Dependent Reverse Leakage Mechanisms in AlGaN/GaN Schottky Diode",
+    venue: "Japanese Journal of Applied Physics, 2013"
+  },
+  {
+    title: "Gate Metal Induced Reduction of Surface Donor States of AlGaN/GaN Heterostructure on Si-Substrate",
+    venue: "Applied Physics Letters, 2012"
+  },
+  {
+    title: "Dual Character of Magnetism in EuFe₂As₂: Optical Spectroscopic and Density-Functional Calculation Study",
+    venue: "Physical Review B, 2010"
+  }
+];
+---
+
+<BaseLayout
+  title="About"
+  description="About Jong Hoon Shin, his work, education, and publications."
+>
+  <section class="about-page">
+    <header class="about-intro">
+      <p class="eyebrow">About Jong Hoon Shin</p>
+      <p class="lead">
+        Hi! I’m Jong Hoon Shin. I started out trying to understand the world
+        through physics, mathematics, electrical engineering, and computer
+        science—and ended up building technology that tries to make it better.
+        These days, I work in computer architecture, artificial intelligence,
+        hardware acceleration, software–hardware co-design, and performance
+        modeling. I love learning new things, organizing what I learn, and
+        turning it into something useful. I used to dream about people like
+        Richard Feynman, John Bardeen, and John von Neumann; now I’m trying to
+        live a version of that dream through silicon and code. I’m always up
+        for reading a good book, solving a deep problem, or sharing a fresh
+        idea.
+      </p>
+      <ul class="expertise-list" aria-label="Areas of expertise">
+        <li>AI accelerators</li>
+        <li>Performance modeling</li>
+        <li>RISC-V CPUs</li>
+        <li>Memory systems</li>
+        <li>HW–SW co-design</li>
+        <li>RRAM computing</li>
+      </ul>
+      <nav class="profile-links" aria-label="Professional profiles">
+        <a
+          href="https://scholar.google.com/citations?user=rgJp-dYAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Google Scholar ↗</a>
+        <a
+          href="https://www.linkedin.com/in/jong-hoon-shin-b98b8673"
+          target="_blank"
+          rel="noopener noreferrer"
+        >LinkedIn ↗</a>
+      </nav>
+    </header>
+
+    <section class="career" aria-labelledby="career-heading">
+      <p class="eyebrow">Work & education</p>
+      <h2 id="career-heading">From materials to machines</h2>
+      <ol>
+        <li>
+          <time>Jul 2025—Now</time>
+          <div class="career-detail">
+            <h3>Machine Learning ASIC Engineer</h3>
+            <p class="career-place">Meta · Sunnyvale, California</p>
+            <p>
+              I work on Meta’s Infra Silicon Architecture team, building
+              performance models for next-generation accelerators across the
+              company’s AI workloads. This work sits alongside Meta’s broader
+              investment in vertically integrated systems such as MTIA, where
+              custom silicon and software are designed together for large-scale
+              inference, ranking, and recommendation.
+            </p>
+          </div>
+        </li>
+        <li>
+          <time>Jul 2019—May 2025</time>
+          <div class="career-detail">
+            <h3>Staff Hardware Engineer</h3>
+            <p class="career-place">Samsung Semiconductor · San Jose, California</p>
+            <p>
+              I modeled and optimized systems ranging from RISC-V processors to
+              deep-learning accelerators and distributed AI hardware. Projects
+              included a cycle-accurate out-of-order CPU model, DAG-based
+              simulation of distributed training, SystemC analysis of SoC
+              memory systems, and analytical accelerator models exploring
+              dataflow, hierarchy, interconnect, mixed precision, sparsity, and
+              compression.
+            </p>
+          </div>
+        </li>
+        <li>
+          <time>Sep 2014—May 2019</time>
+          <div class="career-detail">
+            <h3>Ph.D. in Electrical Engineering</h3>
+            <p class="career-place">University of Michigan · Ann Arbor, Michigan</p>
+            <p>
+              My doctoral research explored computing beyond conventional
+              von Neumann systems with resistive memory. I implemented
+              RRAM-based accelerators for stochastic neural-network learning
+              and spin-glass simulated annealing, demonstrated online feature
+              extraction with analog tantalum-oxide arrays and Oja’s rule, and
+              helped develop low-power Cu-based RRAM devices for neuromorphic
+              and in-memory computing.
+            </p>
+          </div>
+        </li>
+        <li>
+          <time>Jul 2011—Jun 2014</time>
+          <div class="career-detail">
+            <h3>Research Engineer</h3>
+            <p class="career-place">LG Electronics · Seoul, South Korea</p>
+            <p>
+              I researched energy-efficient power electronics using III–V
+              compound semiconductors, including GaAs and InGaAs/AlGaAs
+              transistors for automotive applications. TCAD studies of planar
+              and gate-all-around nanowire FETs connected device physics,
+              short-channel behavior, and subthreshold optimization to
+              practical low-power, high-frequency design.
+            </p>
+          </div>
+        </li>
+        <li>
+          <time>Mar 2008—Feb 2010</time>
+          <div class="career-detail">
+            <h3>M.S. in Physics</h3>
+            <p class="career-place">Seoul National University · Seoul, South Korea</p>
+            <p>
+              Advised by Prof. Tae Won Noh, I studied superconducting materials
+              through optical spectroscopy. The work joined quantum mechanics,
+              optics, electromagnetism, and solid-state physics with
+              experimental planning, measurement, and analysis of real
+              materials.
+            </p>
+          </div>
+        </li>
+        <li>
+          <time>Mar 2002—Feb 2008</time>
+          <div class="career-detail">
+            <h3>B.S. in Physics</h3>
+            <p class="career-place">Seoul National University · Seoul, South Korea</p>
+            <p>
+              I built a foundation in physics and mathematics while also
+              studying computer science, circuits, optics, and solid-state
+              physics. A philosophy and social-science reading club called
+              “Small College,” along with teaching-assistant work, helped shape
+              my interest in how science and technology affect society.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="publications" aria-labelledby="publications-heading">
+      <p class="eyebrow">Selected record</p>
+      <h2 id="publications-heading">Publications</h2>
+      <ol>
+        {publications.map((publication) => (
+          <li>
+            <a
+              href={publication.href ?? scholarSearch(publication.title)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >{publication.title}</a>
+            <small>{publication.venue}</small>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </section>
+</BaseLayout>
