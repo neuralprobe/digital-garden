@@ -42,16 +42,51 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
           const key = "jonghoon-blog:theme";
           const cookieKey = "jonghoon-blog-theme";
           const media = window.matchMedia("(prefers-color-scheme: dark)");
-          let theme = media.matches ? "dark" : "light";
-          try {
-            const saved = localStorage.getItem(key) || document.cookie
-              .split("; ")
-              .find((item) => item.startsWith(cookieKey + "="))
-              ?.split("=")[1];
-            if (saved === "dark" || saved === "light") theme = saved;
-          } catch {}
+          const readCookie = () => document.cookie
+            .split("; ")
+            .find((item) => item.startsWith(cookieKey + "="))
+            ?.split("=")[1] || null;
+          const readStored = () => {
+            try {
+              return localStorage.getItem(key) || readCookie();
+            } catch {
+              return readCookie();
+            }
+          };
+          const stored = readStored();
+          const theme = stored === "dark" || stored === "light"
+            ? stored
+            : (media.matches ? "dark" : "light");
           document.documentElement.dataset.theme = theme;
           document.documentElement.style.colorScheme = theme;
+
+          document.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.querySelector("[data-theme-toggle]");
+            const apply = (next) => {
+              document.documentElement.dataset.theme = next;
+              document.documentElement.style.colorScheme = next;
+              if (!(toggle instanceof HTMLButtonElement)) return;
+              const isDark = next === "dark";
+              toggle.setAttribute("aria-pressed", String(isDark));
+              toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+              toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+            };
+            const persist = (next) => {
+              try {
+                localStorage.setItem(key, next);
+              } catch {}
+              document.cookie = cookieKey + "=" + next + "; Max-Age=31536000; Path=/; SameSite=Lax";
+            };
+            toggle?.addEventListener("click", () => {
+              const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+              persist(next);
+              apply(next);
+            });
+            media.addEventListener("change", (event) => {
+              if (!readStored()) apply(event.matches ? "dark" : "light");
+            });
+            apply(theme);
+          });
         })();
       `}
     </script>
@@ -98,54 +133,6 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
       <span>Built from an Obsidian vault with Hooni.</span>
     </footer>
     <script>
-      const themeKey = "jonghoon-blog:theme";
-      const themeCookieKey = "jonghoon-blog-theme";
-      const themeToggle = document.querySelector("[data-theme-toggle]");
-      const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
-
-      function readCookieTheme() {
-        return document.cookie
-          .split("; ")
-          .find((item) => item.startsWith(`${themeCookieKey}=`))
-          ?.split("=")[1] || null;
-      }
-
-      function storedTheme() {
-        try {
-          return localStorage.getItem(themeKey) || readCookieTheme();
-        } catch {
-          return readCookieTheme();
-        }
-      }
-
-      function persistTheme(theme: string) {
-        try {
-          localStorage.setItem(themeKey, theme);
-        } catch {}
-        document.cookie = `${themeCookieKey}=${theme}; Max-Age=31536000; Path=/; SameSite=Lax`;
-      }
-
-      function applyTheme(theme: string) {
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-        if (!(themeToggle instanceof HTMLButtonElement)) return;
-        const isDark = theme === "dark";
-        themeToggle.setAttribute("aria-pressed", String(isDark));
-        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-        themeToggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
-      }
-
-      themeToggle?.addEventListener("click", () => {
-        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        persistTheme(next);
-        applyTheme(next);
-      });
-
-      themeMedia.addEventListener("change", (event) => {
-        if (!storedTheme()) applyTheme(event.matches ? "dark" : "light");
-      });
-      applyTheme(document.documentElement.dataset.theme || (themeMedia.matches ? "dark" : "light"));
-
       document.addEventListener("click", (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
