@@ -149,14 +149,15 @@ a {
 
 .brand strong {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 16px;
 }
 
 .brand small {
   margin-top: 2px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .site-header nav {
@@ -1796,10 +1797,6 @@ a {
     gap: 12px;
   }
 
-  .brand small {
-    display: none;
-  }
-
   .brand {
     gap: 8px;
   }
@@ -1810,7 +1807,11 @@ a {
   }
 
   .brand strong {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .brand small {
+    font-size: 9px;
   }
 
   .header-actions {
@@ -2026,10 +2027,6 @@ a {
     position: relative;
     align-items: flex-start;
     padding-top: 10px;
-  }
-
-  .brand > span:last-child {
-    display: none;
   }
 
   .header-actions {
