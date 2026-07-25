@@ -40,10 +40,14 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
       {`
         (() => {
           const key = "jonghoon-blog:theme";
+          const cookieKey = "jonghoon-blog-theme";
           const media = window.matchMedia("(prefers-color-scheme: dark)");
           let theme = media.matches ? "dark" : "light";
           try {
-            const saved = localStorage.getItem(key);
+            const saved = localStorage.getItem(key) || document.cookie
+              .split("; ")
+              .find((item) => item.startsWith(cookieKey + "="))
+              ?.split("=")[1];
             if (saved === "dark" || saved === "light") theme = saved;
           } catch {}
           document.documentElement.dataset.theme = theme;
@@ -95,15 +99,30 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
     </footer>
     <script>
       const themeKey = "jonghoon-blog:theme";
+      const themeCookieKey = "jonghoon-blog-theme";
       const themeToggle = document.querySelector("[data-theme-toggle]");
       const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
+      function readCookieTheme() {
+        return document.cookie
+          .split("; ")
+          .find((item) => item.startsWith(`${themeCookieKey}=`))
+          ?.split("=")[1] || null;
+      }
+
       function storedTheme() {
         try {
-          return localStorage.getItem(themeKey);
+          return localStorage.getItem(themeKey) || readCookieTheme();
         } catch {
-          return null;
+          return readCookieTheme();
         }
+      }
+
+      function persistTheme(theme: string) {
+        try {
+          localStorage.setItem(themeKey, theme);
+        } catch {}
+        document.cookie = `${themeCookieKey}=${theme}; Max-Age=31536000; Path=/; SameSite=Lax`;
       }
 
       function applyTheme(theme: string) {
@@ -118,9 +137,7 @@ const fullTitle = title === "Jong Hoon's Blog" ? title : `${title} · Jong Hoon`
 
       themeToggle?.addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        try {
-          localStorage.setItem(themeKey, next);
-        } catch {}
+        persistTheme(next);
         applyTheme(next);
       });
 
