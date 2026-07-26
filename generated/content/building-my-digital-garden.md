@@ -55,35 +55,48 @@ Neither interface replaces the other. They meet at the Markdown note.
 The current system has a deliberate boundary:
 
 1. My primary Obsidian vault, `myVault`, remains the broad second brain and research library.
-2. The dedicated `blog` vault contains material selected and rewritten for publication.
-3. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) validates required metadata, stable slugs, assets, and document relationships.
-4. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) exports only notes explicitly marked `visibility: public`.
-5. [Astro](https://github.com/neuralprobe/digital-garden) turns that derived snapshot into static article, topic, RSS, and graph pages.
-6. [A static host](https://jonghoon.blog/) can publish the result without exposing the private vault or its index.
+2. The dedicated `blog` vault contains material deliberately selected, rewritten, and reviewed for publication.
+3. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) indexes the blog vault, validates metadata and document relationships, and rejects broken or ambiguous links.
+4. During export, Hooni verifies public slugs and assets, rejects links from public notes to private notes, and exports only notes explicitly marked `visibility: public`.
+5. [Astro](https://github.com/neuralprobe/digital-garden) validates publication-specific rules such as reading-path order, then turns the exported snapshot into static article, topic, RSS, and graph pages.
+6. Cloudflare Workers Static Assets serves those pages, while a small Worker and D1 database handle the Like feature.
+7. Neither the deployed site nor Cloudflare receives the private vault or Hooni's SQLite search index.
 
 The private-to-public boundary is explicit at every step:
 
 ```text
-+------------------+      +------------------+
-| myVault          |      | blog vault       |
-| private research | ---> | edited in English|
-+------------------+      +------------------+
-                               |
-                               v
-                     Hooni validate and export
-                               |
-                               v
-                         Astro static build
-                               |
-                               v
-                          Public website
++-----------------------+
+| myVault               |
+| private research      |
++-----------+-----------+
+            |
+            | deliberate selection and rewriting
+            v
++-----------------------+
+| blog vault            |
+| reviewed publication  |
++-----------+-----------+
+            |
+            | Hooni validation + public-only export
+            v
++-----------------------+
+| public snapshot       |
+| Markdown + graph JSON |
++-----------+-----------+
+            |
+            | Astro validation + static build
+            v
++-----------------------+
+| Cloudflare deployment |
+| static assets + API   |
++-----------------------+
 ```
 
-The [website](https://jonghoon.blog/) never reads `myVault` directly. Provenance can remain in the private source note while Hooni strip\s internal source fields from the public export.
+The [website](https://jonghoon.blog/) never reads `myVault` directly. Provenance can remain in the private source note while Hooni strips internal source fields from the public export.
 
 ## The graph is an alternate table of contents
 
-A decorative graph quickly becomes noise. A [useful graph](https://jonghoon.blog/garden) lets the reader ask a narrower question.
+A decorative graph quickly becomes noise. A [useful graph](https://jonghoon.blog/graph) lets the reader ask a narrower question.
 
 This garden distinguishes strong ontology edges—such as `parent`, `part_of`, `depends_on`, and `includes`—from contextual links found in prose. The default parent view shows a clean hierarchy. Other filters expose dependencies or every connection when the additional density is useful.
 
