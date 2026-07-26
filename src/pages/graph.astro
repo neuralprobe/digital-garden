@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import graph from "../../generated/graph.json";
+
+const graphData = JSON.stringify(graph).replaceAll("<", "\\u003c");
+---
+
+<BaseLayout
+  title="Knowledge Graph"
+  description="Explore the relationships among Jong Hoon's public notes."
+  pageClass="garden-page"
+>
+  <section class="garden-app" aria-label="Knowledge graph explorer">
+    <aside class="garden-explorer">
+      <div class="panel-heading">
+        <div>
+          <span class="panel-kicker">Chronology</span>
+          <h2>Explorer</h2>
+        </div>
+        <button class="mobile-panel-close" data-close-panel aria-label="Close explorer">×</button>
+      </div>
+      <label class="search-field">
+        <span>Search notes</span>
+        <input type="search" data-note-search placeholder="Title or summary…" />
+      </label>
+      <div class="timeline" data-timeline></div>
+    </aside>
+
+    <div
+      class="panel-resizer"
+      data-resize-panel="explorer"
+      role="separator"
+      aria-label="Resize Explorer panel"
+      aria-orientation="vertical"
+      aria-valuemin="220"
+      aria-valuemax="420"
+      tabindex="0"
+    ></div>
+
+    <div class="garden-canvas">
+      <div class="graph-toolbar" aria-label="Graph relationship filters">
+        <button class="mobile-panel-open" data-open-explorer>Explorer</button>
+        <div class="preset-group" data-presets>
+          <button data-preset="all">All</button>
+          <button data-preset="parent" class="active">Parent only</button>
+          <button data-preset="structure">Structure</button>
+          <button data-preset="dependencies">Dependencies</button>
+          <button data-preset="links">Links</button>
+        </div>
+        <details class="relation-menu">
+          <summary>Custom</summary>
+          <fieldset data-relation-options>
+            <legend>Edge relations</legend>
+          </fieldset>
+        </details>
+        <label class="isolate-toggle">
+          <input type="checkbox" data-hide-isolates checked />
+          Hide isolated
+        </label>
+        <span class="graph-count" data-graph-count></span>
+      </div>
+      <div class="graph-stage" data-graph-stage>
+        <svg data-graph role="img" aria-label="Interactive document relationship graph"></svg>
+        <div class="graph-empty" data-graph-empty hidden>
+          No nodes match this relationship filter.
+        </div>
+      </div>
+      <div class="graph-legend" data-graph-legend></div>
+    </div>
+
+    <div
+      class="panel-resizer"
+      data-resize-panel="reader"
+      role="separator"
+      aria-label="Resize selected note panel"
+      aria-orientation="vertical"
+      aria-valuemin="320"
+      aria-valuemax="650"
+      tabindex="0"
+    ></div>
+
+    <aside class="garden-reader" data-reader>
+      <div class="panel-heading">
+        <div>
+          <span class="panel-kicker">Selected note</span>
+          <h2 data-reader-title>Choose a node</h2>
+        </div>
+        <a
+          data-open-note
+          class="open-note"
+          href="/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Open selected note in a new tab"
+        >↗</a>
+      </div>
+      <div class="reader-body" data-reader-body>
+        <div class="reader-placeholder">
+          <span>JH</span>
+          <p>Select a graph node or an explorer item to read the note here.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <script is:inline id="graph-data" type="application/json" set:html={graphData}></script>
+  <script>
+    import "../scripts/garden.js";
+  </script>
+</BaseLayout>

@@ -33,7 +33,7 @@ npm run dev
 ```
 
 Open <http://localhost:4321>. The knowledge garden is at
-<http://localhost:4321/garden/>.
+<http://localhost:4321/graph/>.
 
 To test the complete Cloudflare Worker and local D1 Like flow:
 
