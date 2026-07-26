@@ -2,7 +2,7 @@
 id: "ks-building-digital-garden"
 title: "Building My Digital Garden"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "A private Obsidian vault becomes a selective, connected, and maintainable public garden."
 status: "active"
 type: "post"
@@ -46,7 +46,7 @@ The human and the agent need different interfaces to the same knowledge.
 
 For a person, the vault is ordinary Markdown viewed in Obsidian. Titles, folders, backlinks, tags, and wiki-style links make the collection approachable. The files remain portable and readable without a proprietary database.
 
-For an agent, opening every Markdown file would waste context and hide important distinctions. Hooni builds a SQLite index with FTS5 search, stores stable document identities and ontology, and supports bounded graph traversal. The agent first sees ranked titles and summaries, then reads only the documents and neighbors that justify closer attention.
+For an agent, opening every Markdown file would waste context and hide important distinctions. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) builds a SQLite index with FTS5 search, stores stable document identities and ontology, and supports bounded graph traversal. The agent first sees ranked titles and summaries, then reads only the documents and neighbors that justify closer attention.
 
 Neither interface replaces the other. They meet at the Markdown note.
 
@@ -54,12 +54,12 @@ Neither interface replaces the other. They meet at the Markdown note.
 
 The current system has a deliberate boundary:
 
-1. `myVault` remains the broad second brain and research library.
+1. My primary Obsidian vault, `myVault`, remains the broad second brain and research library.
 2. The dedicated `blog` vault contains material selected and rewritten for publication.
-3. Hooni validates required metadata, stable slugs, assets, and document relationships.
-4. Hooni exports only notes explicitly marked `visibility: public`.
-5. Astro turns that derived snapshot into static article, topic, RSS, and graph pages.
-6. A static host can publish the result without exposing the private vault or its index.
+3. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) validates required metadata, stable slugs, assets, and document relationships.
+4. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) exports only notes explicitly marked `visibility: public`.
+5. [Astro](https://github.com/neuralprobe/digital-garden) turns that derived snapshot into static article, topic, RSS, and graph pages.
+6. [A static host](https://jonghoon.blog/) can publish the result without exposing the private vault or its index.
 
 The private-to-public boundary is explicit at every step:
 
@@ -79,11 +79,11 @@ The private-to-public boundary is explicit at every step:
                           Public website
 ```
 
-The website never reads `myVault` directly. Provenance can remain in the private source note while Hooni strips internal source fields from the public export.
+The [website](https://jonghoon.blog/) never reads `myVault` directly. Provenance can remain in the private source note while Hooni strip\s internal source fields from the public export.
 
 ## The graph is an alternate table of contents
 
-A decorative graph quickly becomes noise. A useful graph lets the reader ask a narrower question.
+A decorative graph quickly becomes noise. A [useful graph](https://jonghoon.blog/garden) lets the reader ask a narrower question.
 
 This garden distinguishes strong ontology edges—such as `parent`, `part_of`, `depends_on`, and `includes`—from contextual links found in prose. The default parent view shows a clean hierarchy. Other filters expose dependencies or every connection when the additional density is useful.
 

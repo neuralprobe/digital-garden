@@ -3,7 +3,7 @@ id: "ca-ch1-isa-microarchitecture-hardware"
 title: "ISA, Microarchitecture, and Hardware"
 aliases: ["ISA Microarchitecture and Hardware"]
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "A practical separation of the software-visible ISA from organization and physical design."
 status: "active"
 type: "post"

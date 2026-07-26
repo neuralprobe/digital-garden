@@ -2,7 +2,7 @@
 id: "ks-knowledge-systems"
 title: "Knowledge Systems"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "How connected notes become a durable writing practice and a selective public garden."
 status: "active"
 type: "index"
@@ -10,6 +10,7 @@ topic: "Knowledge Systems"
 visibility: "public"
 published: "2026-07-24T08:00:00-07:00"
 slug: "knowledge-systems"
+cover: "/assets/a/img/covers/knowledge-systems.png"
 lang: "en"
 tags: ["knowledge-systems", "digital-garden", "zettelkasten"]
 series: "Knowledge Systems"
@@ -18,7 +19,7 @@ parent: []
 depends_on: []
 superseded_by: []
 part_of: []
-includes: ["[[Zettelkasten as a Writing Engine]]", "[[Building My Digital Garden]]"]
+includes: ["[[Zettelkasten as a Writing Engine]]", "[[Building My Digital Garden]]", "[[What Is a Zettelkasten?]]", "[[Hooni: Durable Memory and Coordination for Codex Agents]]"]
 ---
 # Knowledge Systems
 
@@ -43,3 +44,8 @@ Private notes -> Reusable ideas -> Selected cluster -> Public garden
    bottom-up workflow that turn reading into reusable thought.
 2. [Building My Digital Garden](/posts/building-my-digital-garden/) shows how Obsidian, Hooni, Astro, and a
    relationship graph create a selective publication pipeline.
+3. [What Is a Zettelkasten?](/posts/what-is-a-zettelkasten/) steps back to Niklas Luhmann, the history of his
+   slip-box, and the design choices that made it a tool for developing theory.
+4. [Hooni: Durable Memory and Coordination for Codex Agents](/posts/hooni-codex-plugin/) introduces the
+   local-first tooling that coordinates long-lived Codex agents and treats an
+   Obsidian vault as a searchable, privacy-aware knowledge graph.

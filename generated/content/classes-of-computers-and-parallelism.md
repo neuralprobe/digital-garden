@@ -2,7 +2,7 @@
 id: "ca-ch1-computer-classes-parallelism"
 title: "Classes of Computers and Their Parallelism"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "How system goals determine the useful forms of parallelism in modern computers."
 status: "active"
 type: "post"

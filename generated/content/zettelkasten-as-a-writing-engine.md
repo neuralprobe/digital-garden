@@ -2,7 +2,7 @@
 id: "ks-zettelkasten-writing-engine"
 title: "Zettelkasten as a Writing Engine"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "How atomic notes, deliberate links, and indexes turn reading into reusable writing."
 status: "active"
 type: "post"
@@ -27,6 +27,11 @@ includes: []
 Writing rarely begins when a blank document is opened. It begins while reading, explaining an idea to someone else, comparing two claims, or noticing that an old assumption no longer fits. A useful note system captures that earlier work and makes it available when a manuscript finally needs to take shape.
 
 That is the practical promise of Zettelkasten: not a prettier archive, but an environment in which writing can emerge from accumulated thinking.
+
+That promise has a history. [What Is a Zettelkasten?](/posts/what-is-a-zettelkasten/) explains how the
+sociologist Niklas Luhmann turned a paper slip-box into a long-running partner
+for theory development, and why the method matters beyond its original wooden
+drawers.
 
 ## The scalability problem is structural
 
@@ -80,7 +85,7 @@ Linking every shared keyword creates a dense graph with little meaning. A useful
 - Which larger argument includes this idea?
 - What would a reader naturally want to understand next?
 
-Hooni stores the strongest structural relations in frontmatter and derives contextual `wikilink` edges from the body. This keeps the graph useful to both Obsidian and an agent: hierarchy can be filtered separately from looser associations.
+[Hooni](https://github.com/neuralprobe/hooni-codex-plugin) stores the strongest structural relations in frontmatter and derives contextual `wikilink` edges from the body. This keeps the graph useful to both human and an agent: hierarchy can be filtered separately from looser associations.
 
 ## A writing-centered workflow
 
@@ -97,9 +102,9 @@ The workflow is intentionally simple:
 
 The topic is chosen later than in a conventional outline-first process. This does not eliminate planning. It moves planning closer to evidence: the writer can see which ideas have enough support, where contradictions remain, and which sections are still empty.
 
-## What the agent changes
+## What the AI agent changes
 
-An agent can accelerate retrieval and maintenance, but it should not invent the graph. Hooni searches the SQLite index before reading broadly, shows summaries and ontology, and traverses only the neighboring notes that appear relevant. When a note changes, it re-indexes and reports broken or ambiguous links.
+An AI agent can accelerate retrieval and maintenance, but it should not invent the graph. [Hooni](https://github.com/neuralprobe/hooni-codex-plugin) searches the SQLite index before reading broadly, shows summaries and ontology, and traverses only the neighboring notes that appear relevant. When a note changes, it re-indexes and reports broken or ambiguous links.
 
 That makes the machine useful without turning the vault into an opaque database. Markdown remains the source of truth, Obsidian remains the human interface, and the index remains reproducible.
 

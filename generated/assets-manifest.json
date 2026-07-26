@@ -10,14 +10,34 @@
     "url": "/assets/a/img/covers/classes-of-computers-and-parallelism.webp"
   },
   {
+    "reference": "a/img/covers/computer-architecture-chapter-1.png",
+    "source": "a/img/covers/computer-architecture-chapter-1.png",
+    "url": "/assets/a/img/covers/computer-architecture-chapter-1.png"
+  },
+  {
+    "reference": "a/img/covers/hooni-codex-plugin.png",
+    "source": "a/img/covers/hooni-codex-plugin.png",
+    "url": "/assets/a/img/covers/hooni-codex-plugin.png"
+  },
+  {
     "reference": "a/img/covers/isa-microarchitecture-and-hardware.webp",
     "source": "a/img/covers/isa-microarchitecture-and-hardware.webp",
     "url": "/assets/a/img/covers/isa-microarchitecture-and-hardware.webp"
   },
   {
+    "reference": "a/img/covers/knowledge-systems.png",
+    "source": "a/img/covers/knowledge-systems.png",
+    "url": "/assets/a/img/covers/knowledge-systems.png"
+  },
+  {
     "reference": "a/img/covers/quantitative-computer-design.webp",
     "source": "a/img/covers/quantitative-computer-design.webp",
     "url": "/assets/a/img/covers/quantitative-computer-design.webp"
+  },
+  {
+    "reference": "a/img/covers/what-is-a-zettelkasten.png",
+    "source": "a/img/covers/what-is-a-zettelkasten.png",
+    "url": "/assets/a/img/covers/what-is-a-zettelkasten.png"
   },
   {
     "reference": "a/img/covers/why-computer-architecture-changed.webp",

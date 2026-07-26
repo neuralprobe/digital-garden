@@ -1,5 +1,54 @@
 [
   {
+    "cover": "/assets/a/img/covers/what-is-a-zettelkasten.png",
+    "created": "2026-07-25",
+    "featured": false,
+    "id": "ks-what-is-zettelkasten",
+    "lang": "en",
+    "legacy_url": null,
+    "published": "2026-07-25T21:20:00-07:00",
+    "series": null,
+    "series_order": null,
+    "slug": "what-is-a-zettelkasten",
+    "status": "active",
+    "summary": "How Niklas Luhmann turned a paper slip-box into a partner for developing ideas.",
+    "tags": [
+      "zettelkasten",
+      "niklas-luhmann",
+      "history",
+      "knowledge-systems"
+    ],
+    "title": "What Is a Zettelkasten?",
+    "type": "post",
+    "updated": "2026-07-25",
+    "visibility": "public"
+  },
+  {
+    "cover": "/assets/a/img/covers/hooni-codex-plugin.png",
+    "created": "2026-07-25",
+    "featured": false,
+    "id": "ks-hooni-codex-plugin",
+    "lang": "en",
+    "legacy_url": null,
+    "published": "2026-07-25T21:25:00-07:00",
+    "series": null,
+    "series_order": null,
+    "slug": "hooni-codex-plugin",
+    "status": "active",
+    "summary": "How Hooni gives Codex agents durable handoffs and a searchable Obsidian knowledge graph.",
+    "tags": [
+      "hooni",
+      "codex",
+      "obsidian",
+      "agents",
+      "knowledge-graph"
+    ],
+    "title": "Hooni: Durable Memory and Coordination for Codex Agents",
+    "type": "post",
+    "updated": "2026-07-25",
+    "visibility": "public"
+  },
+  {
     "cover": "/assets/a/img/covers/zettelkasten-for-people-who-write.webp",
     "created": "2026-07-24",
     "featured": false,
@@ -20,7 +69,7 @@
     ],
     "title": "Zettelkasten as a Writing Engine",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
@@ -44,7 +93,7 @@
     ],
     "title": "Why Computer Architecture Changed",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
@@ -68,11 +117,11 @@
     ],
     "title": "Quantitative Computer Design",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
-    "cover": null,
+    "cover": "/assets/a/img/covers/knowledge-systems.png",
     "created": "2026-07-24",
     "featured": false,
     "id": "ks-knowledge-systems",
@@ -91,7 +140,7 @@
     ],
     "title": "Knowledge Systems",
     "type": "index",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
@@ -115,11 +164,11 @@
     ],
     "title": "ISA, Microarchitecture, and Hardware",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
-    "cover": null,
+    "cover": "/assets/a/img/covers/computer-architecture-chapter-1.png",
     "created": "2026-07-24",
     "featured": true,
     "id": "ca-ch1-series",
@@ -139,7 +188,7 @@
     ],
     "title": "Computer Architecture Chapter 1",
     "type": "index",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
@@ -163,7 +212,7 @@
     ],
     "title": "Classes of Computers and Their Parallelism",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   },
   {
@@ -187,7 +236,7 @@
     ],
     "title": "Building My Digital Garden",
     "type": "post",
-    "updated": "2026-07-24",
+    "updated": "2026-07-25",
     "visibility": "public"
   }
 ]

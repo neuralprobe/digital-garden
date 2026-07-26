@@ -2,7 +2,7 @@
 id: "ca-ch1-quantitative-design"
 title: "Quantitative Computer Design"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "How performance, reliability, locality, and Amdahl's Law guide architecture decisions."
 status: "active"
 type: "post"

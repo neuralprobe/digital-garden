@@ -2,7 +2,7 @@
 id: "ca-ch1-why-architecture-changed"
 title: "Why Computer Architecture Changed"
 created: "2026-07-24"
-updated: "2026-07-24"
+updated: "2026-07-25"
 summary: "How scaling limits moved processor design toward parallelism and specialized hardware."
 status: "active"
 type: "post"
